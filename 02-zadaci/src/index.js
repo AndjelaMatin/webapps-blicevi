@@ -31,5 +31,16 @@ app.get('/getItemById/:id',async(req,res)=>{
     res.json({"satatus":"Failed"})
   }
 })
+//zadatak 4
+app.patch('/updateItemPrice/:id',async(req,res)=>{
+  let data=req.body
+  let id=req.params.id
+  let db=await connect()
+  let result=await db.collection('collection2').updateOne(
+    {_id: mongo.ObjectId(id)},
+    {$set: data,}
+    )
+    res.json(result)
+})
 
 app.listen(port,()=>console.log(`Work on port ${port}`))
