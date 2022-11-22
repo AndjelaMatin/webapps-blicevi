@@ -19,6 +19,19 @@ app.post('/saveItem',async(req,res)=>{
     res.json({"status":"Failed"})
   }
 })
+//zadatak 2
+app.get('/getBrend/:brand',async(req,res)=>{
+  let db=await connect()
+  let cursor = await db.collection("collection1").find()
+  let results = await cursor.toArray()
+  if(doc){
+    res.json({"status":"OK","data":results})
+  }
+  else{
+    res.json({"satatus":"Failed", "message":"Brend not found in DB"})
+  }
+})
+
 //zadatak 3
 app.get('/getItemById/:id',async(req,res)=>{
   let id=req.params.id
